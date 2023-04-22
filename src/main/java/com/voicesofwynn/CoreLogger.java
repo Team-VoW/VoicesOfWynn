@@ -27,4 +27,6 @@ public class CoreLogger extends VOWLog {
     public void locError(String str) {
         logger.error(str);
     }
+
+    public void locDebug(String str) { logger.debug(str);}
 }
