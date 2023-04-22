@@ -3,7 +3,7 @@
 	"id": "voicesofwynn",
 	"version": "${version}",
 	"name": "VoicesOfWynn",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Voices of Wynn adds voiceslines to wynncraft",
 	"authors": [
 		"Me!"
 	],
@@ -12,11 +12,10 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/voicesofwynn/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.voicesofwynn.ExampleMod"
+			"com.voicesofwynn.VoicesOfWynn"
 		]
 	},
 	"mixins": [
