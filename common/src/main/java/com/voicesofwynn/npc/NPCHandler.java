@@ -20,11 +20,14 @@ public class NPCHandler {
 
     public static void registerAndUpdate(String rawName, VOWLocation location) {
         cachedNPC.put(rawName, location);
+        //Resolve: [VOW-NPC] - Register And Update ledar
         VOWCommon.getInstance().getLogger().locLog("[VOW-NPC] - Register And Update " + rawName);
     }
 
     public static void removeEntities(ArmorStand armorStand) {
-        String name = Objects.requireNonNull(armorStand.getCustomName()).getString();
+        if (armorStand == null) return;
+        if (armorStand.getCustomName() == null) return;
+        String name = armorStand.getCustomName().getString();
         String rawName = Objects.requireNonNull(ChatFormatting.stripFormatting(name)).replaceAll("[^a-z?\\d]", "");
         if (!cachedNPC.containsKey(rawName)) return;
         cachedNPC.remove(rawName);

@@ -70,6 +70,7 @@ public abstract class MixinPacketListener {
 
     @Inject(method = "handleSystemChat", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/chat/ChatListener;handleSystemMessage(Lnet/minecraft/network/chat/Component;Z)V"))
     private void onMessage(ClientboundSystemChatPacket packet, CallbackInfo ci) {
+        if (!VOWCommon.getInstance().isWynnServer()) return;
         if (!Minecraft.getInstance().isSameThread()) return;
         if (packet.content().getString().contains("[Voices of Wynn]") || packet.overlay()) return;
         String message = packet.content().getString();
@@ -87,7 +88,6 @@ public abstract class MixinPacketListener {
         if (!dialogMap.containsKey(format)) return;
         DialogueRegister.Dialog dialog = dialogMap.get(format);
 
-
         PlayEvent playEvent = new PlayEvent();
         playEvent.location = dialog.location;
         playEvent.fallOff = dialog.fallOff;
@@ -101,10 +101,17 @@ public abstract class MixinPacketListener {
 
     private boolean isArmorValid(ArmorStand armorStand) {
         if (Minecraft.getInstance().player == null) {
+            VOWCommon.getInstance().getLogger().locLog("Player: "+Minecraft.getInstance().player+"");
             return false;
         }
-        if (armorStand == null || armorStand.getCustomName() == null) return false;
-        if (!armorStand.isAlive() || (armorStand.isInvisible() && !armorStand.isCustomNameVisible())) return false;
+        if (armorStand == null || armorStand.getCustomName() == null) {
+            VOWCommon.getInstance().getLogger().locLog("ArmorStand: "+armorStand+"");
+            return false;
+        }
+        if (!armorStand.isAlive() || (armorStand.isInvisible() && !armorStand.isCustomNameVisible())) {
+            VOWCommon.getInstance().getLogger().locLog("Alive/Invisible/CustomNameVisible" + !armorStand.isAlive() + " " + armorStand.isInvisible() + " " + !armorStand.isCustomNameVisible());
+            return false;
+        }
         return !(armorStand.getEyePosition().distanceTo(Minecraft.getInstance().player.getEyePosition()) > 200);
         // TODO: Maybe add config change
     }
