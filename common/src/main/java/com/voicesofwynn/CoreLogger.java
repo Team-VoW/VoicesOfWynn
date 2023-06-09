@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 
 public class CoreLogger extends VOWLog {
 
-
     private final Logger logger;
 
     public CoreLogger(Logger logger) {
@@ -29,4 +28,5 @@ public class CoreLogger extends VOWLog {
     }
 
     public void locDebug(String str) { logger.debug(str);}
+
 }
