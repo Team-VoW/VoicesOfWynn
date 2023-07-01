@@ -29,8 +29,9 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
 	modImplementation "com.voicesofwynn:vow-core:1.0-SNAPSHOT"
+
 	includeInJar "com.voicesofwynn:vow-core:1.0-SNAPSHOT"
 	includeInJar "org.yaml:snakeyaml:2.0"
 }

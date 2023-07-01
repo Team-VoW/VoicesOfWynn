@@ -1,6 +1,9 @@
 package com.voicesofwynn;
 
 import com.voicesofwynn.core.VOWCore;
+import com.voicesofwynn.core.soundmanager.DefaultSoundManager;
+import com.voicesofwynn.core.soundmanager.SoundManager;
+import com.voicesofwynn.core.sourcemanager.SourceManager;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -17,6 +20,9 @@ public class VoicesOfWynn implements ModInitializer {
 
         new Thread(() -> {
             VOWCore.init(new FunctionProvider(), new File("Voices_of_Wynn"));
+            SourceManager.getInstance().update();
+            SoundManager.instance = new DefaultSoundManager();
+            SoundManager.instance.start();
         }).start();
 
     }

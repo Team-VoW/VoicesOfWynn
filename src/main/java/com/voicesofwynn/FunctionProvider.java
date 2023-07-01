@@ -6,6 +6,8 @@ import com.voicesofwynn.core.wrappers.VOWLocation;
 import com.voicesofwynn.core.wrappers.VOWLocationProvider;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FunctionProvider implements IFunctionProvider {
 
@@ -22,5 +24,15 @@ public class FunctionProvider implements IFunctionProvider {
     @Override
     public VOWLocation getPlayerLocation() {
         return null;
+    }
+
+
+    @Override
+    public Map<String, String[]> defaultSources() {
+        return new HashMap<>() {
+            {
+                put("VoW", new String[] {"https://voicesofwynn.com/files/core-dev-server/vow-src/"});
+            }
+        };
     }
 }
