@@ -1,6 +1,8 @@
 package com.voicesofwynn;
 
 import com.voicesofwynn.core.VOWCore;
+import com.voicesofwynn.core.loadmanager.LoadManager;
+import com.voicesofwynn.core.registers.DialogueRegister;
 import com.voicesofwynn.core.soundmanager.DefaultSoundManager;
 import com.voicesofwynn.core.soundmanager.SoundManager;
 import com.voicesofwynn.core.sourcemanager.SourceManager;
@@ -36,6 +38,8 @@ public class VoicesOfWynn implements ModInitializer {
             SourceManager.getInstance().update();
             SoundManager.instance = new DefaultSoundManager();
             SoundManager.instance.start();
+            new LoadManager();
+            SourceManager.getInstance().reload();
         }).start();
 
     }

@@ -3,7 +3,7 @@
 	"package": "com.voicesofwynn.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+      "OnMessageMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
