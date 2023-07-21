@@ -31,7 +31,7 @@ public class FunctionProvider implements IFunctionProvider {
     public Map<String, String[]> defaultSources() {
         return new HashMap<>() {
             {
-                put("VoW", new String[] {"https://voicesofwynn.com/files/core-dev-server/vow-src/"});
+                put("VoW", new String[] {"https://voicesofwynn.com/files/core-dev-server/vow-src-upload/"});
             }
         };
     }

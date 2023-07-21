@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class VoicesOfWynn implements ModInitializer {
 
@@ -19,7 +21,18 @@ public class VoicesOfWynn implements ModInitializer {
     public void onInitialize() {
 
         new Thread(() -> {
-            VOWCore.init(new FunctionProvider(), new File("Voices_of_Wynn"));
+            File enables = new File("VoW/files/sources/VoW/enables.yml");
+            if (!enables.exists()) {
+                enables.getParentFile().mkdirs();
+                try {
+                    Files.write(enables.toPath(), ("quests: \"*\"\n" +
+                                            "other: \"*\"").getBytes());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            VOWCore.init(new FunctionProvider(), new File("VoW"));
             SourceManager.getInstance().update();
             SoundManager.instance = new DefaultSoundManager();
             SoundManager.instance.start();
